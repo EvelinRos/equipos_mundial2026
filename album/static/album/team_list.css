@@ -6,7 +6,11 @@
     --divider: #D9D4C9;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     background-color: var(--cream);
@@ -157,7 +161,7 @@ h1 {
     opacity: 0.6;
 }
 
-/* divider - règle de imprimerie */
+/* divider */
 .divider {
     height: 1px;
     background: var(--divider);
@@ -227,9 +231,9 @@ h1 {
     letter-spacing: 0.1em;
 }
 
-.player-info { 
-    flex: 1; 
-    min-width: 0; 
+.player-info {
+    flex: 1;
+    min-width: 0;
 }
 
 .player-name {
