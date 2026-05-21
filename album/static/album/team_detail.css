@@ -1,0 +1,232 @@
+/* Import shared styles */
+@import url('base.css');
+
+/* ── BACK BUTTON ── */
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-bg-card);
+    border: var(--color-border);
+    color: var(--color-text-primary);
+    padding: 10px 16px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.back-btn:hover {
+    border-color: var(--color-text-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    color: var(--color-text-accent);
+}
+
+/* ── MAIN ── */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 24px 100px;
+}
+
+main > h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+}
+
+.team-info {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    margin-bottom: 48px;
+}
+
+/* ── SECTION ── */
+.section-title {
+    font-size: 1.6rem;
+    color: var(--color-text-primary);
+    margin-top: 40px;
+    margin-bottom: 8px;
+}
+
+.players-count {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+/* ── PLAYERS GRID ── */
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 28px;
+    margin-top: 32px;
+}
+
+/* ── PLAYER CARD ── */
+.player-card {
+    background: var(--color-bg-card);
+    border: var(--color-border);
+    padding: 20px;
+    display: flex;
+    gap: 14px;
+    transition: box-shadow 0.3s ease;
+}
+
+.player-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Avatar */
+.player-avatar {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--color-bg-page);
+    border: var(--color-border);
+}
+
+.player-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.8) sepia(0.1);
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-accent);
+    font-family: 'Playfair Display', serif;
+}
+
+/* Player info */
+.player-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.player-info h3 {
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+}
+
+.stats {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.comment {
+    font-size: 0.75rem;
+    color: var(--color-text-accent);
+    font-style: italic;
+    margin-top: 8px;
+}
+
+/* Empty state */
+.empty {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 40px;
+    color: var(--color-text-secondary);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .back-btn {
+        padding: 8px 12px;
+        font-size: 0.65rem;
+    }
+
+    main {
+        padding: 60px 20px 80px;
+    }
+
+    main > h1 {
+        font-size: 1.8rem;
+    }
+
+    .players-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .player-card {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .player-avatar {
+        width: 56px;
+        height: 56px;
+    }
+
+    .player-info h3 {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-btn {
+        padding: 8px 10px;
+        font-size: 0.6rem;
+        gap: 6px;
+    }
+
+    main {
+        padding: 60px 16px 80px;
+    }
+
+    main > h1 {
+        font-size: 1.5rem;
+    }
+
+    .team-info {
+        font-size: 0.6rem;
+    }
+
+    .players-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .player-card {
+        padding: 14px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .player-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .player-info h3 {
+        font-size: 0.9rem;
+    }
+}

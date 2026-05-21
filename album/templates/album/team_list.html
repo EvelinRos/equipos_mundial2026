@@ -5,15 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Equipos Mundial 2026</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@700&family=Inter:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'album/base.css' %}" />
     <link rel="stylesheet" href="{% static 'album/team_list.css' %}" />
   </head>
   <body>
     <header>
-      <p class="header-eyebrow">⚽ Álbum Oficial</p>
+      <p class="header-eyebrow">Álbum Oficial</p>
       <h1>Equipos del Mundial 2026</h1>
       <p class="header-sub">USA · CANADA · MÉXICO</p>
     </header>
@@ -21,16 +19,17 @@
     <main>
       <div class="teams-grid">
         {% for team in object_list %}
-        <div class="team-card">
+        <a class="team-card" href="{% url 'team-detail' team.pk %}">
           <!-- Banner foto del equipo -->
           <div class="team-banner">
             <img
               class="banner-img"
               src="{{ team.team.url }}"
               alt="{{ team.name }}"
+              loading="lazy"
             />
             <div class="shield-badge">
-              <img src="{{ team.shield.url }}" alt="Escudo {{ team.name }}" />
+              <img src="{{ team.shield.url }}" alt="Escudo {{ team.name }}" loading="lazy" />
             </div>
           </div>
 
@@ -38,51 +37,16 @@
           <div class="card-body">
             <h2 class="team-name">{{ team.name }}</h2>
             <p class="team-date">Registrado: {{ team.pub_date }}</p>
-
-            <div class="divider"></div>
-
-            <p class="players-label">Jugadores</p>
-            <ul class="players-list">
-              {% for player in team.get_players.all %}
-              <li class="player-item">
-                {% if player.photo %}
-                <img
-                  class="player-avatar"
-                  src="{{ player.photo.url }}"
-                  alt="{{ player.first_name }}"
-                />
-                {% else %}
-                <div class="player-avatar-placeholder">
-                  {{ player.first_name|first }}{{ player.last_name|first }}
-                </div>
-                {% endif %}
-                <div class="player-info">
-                  <div class="player-name">
-                    {{ player.first_name }} {{ player.last_name }}
-                  </div>
-                  <div class="player-stats">
-                    {{ player.height }}m &nbsp;·&nbsp; {{ player.weight }}kg
-                  </div>
-                </div>
-              </li>
-              {% empty %}
-              <li class="empty-players">Sin jugadores registrados</li>
-              {% endfor %}
-            </ul>
+            <p class="players-label">{{ team.get_players.count }} jugador(es)</p>
           </div>
-        </div>
+        </a>
         {% empty %}
-        <div class="no-teams" style="grid-column: 1/-1">
+        <div class="no-teams">
           <span></span>
           Aún no hay equipos registrados.<br />
-          Ve al
-          <a href="/admin/" style="color: var(--gold)"
-            >panel de administración</a
-          >
-          para agregar uno.
+          Ve al <a href="/admin/">panel de administración</a> para agregar uno.
         </div>
         {% endfor %}
-      </div>
     </main>
 
     <footer>MUNDIAL 2026 &nbsp;·&nbsp; ALBUM DE SELECCIONES</footer>

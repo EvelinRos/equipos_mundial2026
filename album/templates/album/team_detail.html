@@ -1,0 +1,57 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ team.name }} — Mundial 2026</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'album/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'album/team_detail.css' %}" />
+  </head>
+  <body>
+    <a class="back-btn" href="{% url 'team-list' %}">← Volver</a>
+
+    <main>
+      <h1>{{ team.name }}</h1>
+      <p class="team-info">Registrado: {{ team.pub_date }}</p>
+
+      <h2 class="section-title">Nómina</h2>
+      <p class="players-count">{{ players|length }} Jugador(es)</p>
+
+      <div class="players-grid">
+        {% for player in players %}
+        <div class="player-card">
+          <div class="player-avatar">
+            {% if player.photo %}
+            <img
+              src="{{ player.photo.url }}"
+              alt="{{ player.first_name }} {{ player.last_name }}"
+              loading="lazy"
+            />
+            {% else %}
+            <div class="avatar-placeholder">
+              {{ player.first_name|first }}{{ player.last_name|first }}
+            </div>
+            {% endif %}
+          </div>
+          <div class="player-info">
+            <h3>{{ player.first_name }} {{ player.last_name }}</h3>
+            <p class="stats">{{ player.height }}m · {{ player.weight }}kg</p>
+            {% if player.comment %}
+            <p class="comment">{{ player.comment }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% empty %}
+        <p class="empty">Sin jugadores registrados.</p>
+        {% endfor %}
+      </div>
+    </main>
+
+    <footer>MUNDIAL 2026 · ALBUM DE SELECCIONES</footer>
+  </body>
+</html>

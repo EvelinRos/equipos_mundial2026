@@ -1,80 +1,55 @@
-:root {
-    --cream: #F5F1E8;
-    --ivory: #FDFBF7;
-    --black: #1A1A1A;
-    --gold-aged: #C9A84C;
-    --divider: #D9D4C9;
-}
+/* Import shared styles */
+@import url('base.css');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: var(--cream);
-    color: var(--black);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 1.6;
-    min-height: 100vh;
-}
-
-/* ── HEADER ── */
+/* Header */
 header {
     text-align: center;
     padding: 80px 20px 60px;
-    border-bottom: 1px solid var(--divider);
-    background-color: var(--ivory);
+    border-bottom: var(--color-border);
+    background-color: var(--color-bg-card);
 }
 
 .header-eyebrow {
-    font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 0.7rem;
     letter-spacing: 0.3em;
-    color: var(--gold-aged);
+    color: var(--color-text-accent);
     text-transform: uppercase;
     margin-bottom: 20px;
-    line-height: 1.8;
 }
 
 h1 {
-    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
     font-size: clamp(2.5rem, 5vw, 4.2rem);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    color: var(--black);
-    font-weight: 700;
+    color: var(--color-text-primary);
     margin-bottom: 20px;
 }
 
 .header-sub {
-    font-family: 'Inter', sans-serif;
     font-size: 0.75rem;
-    color: var(--black);
-    margin-top: 16px;
+    color: var(--color-text-secondary);
     letter-spacing: 0.15em;
     font-weight: 300;
     text-transform: uppercase;
 }
 
-/* ── GRID ── */
-.teams-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 32px;
+/* Main layout */
+main {
     max-width: 1100px;
     margin: 0 auto;
     padding: 60px 24px 100px;
 }
 
-/* ── TEAM CARD ── */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+/* Team card */
 .team-card {
-    background: var(--ivory);
-    border: 1px solid var(--divider);
+    display: block;
+    background: var(--color-bg-card);
+    border: var(--color-border);
     border-radius: 2px;
     overflow: hidden;
     transition: opacity 0.4s ease;
@@ -84,15 +59,15 @@ h1 {
     opacity: 0.85;
 }
 
-/* team photo banner */
+/* Banner */
 .team-banner {
     position: relative;
     height: 200px;
     overflow: hidden;
-    background-color: var(--black);
+    background-color: #000000;
 }
 
-.team-banner img.banner-img {
+.banner-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -105,26 +80,17 @@ h1 {
     filter: saturate(0.4) sepia(0.15);
 }
 
-.team-banner::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: none;
-}
-
-/* shield badge */
+/* Shield */
 .shield-badge {
     position: absolute;
     bottom: -22px;
     left: 20px;
     width: 68px;
     height: 68px;
-    border-radius: 0%;
-    border: 2px solid var(--gold-aged);
-    background: var(--ivory);
+    border: 2px solid var(--color-border-light);
+    background: var(--color-bg-card);
     overflow: hidden;
     z-index: 2;
-    box-shadow: none;
 }
 
 .shield-badge img {
@@ -135,167 +101,91 @@ h1 {
     filter: saturate(0.6) sepia(0.15);
 }
 
-/* card body */
+/* Card body */
 .card-body {
     padding: 40px 24px 24px;
 }
 
 .team-name {
-    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
     font-size: 1.85rem;
-    letter-spacing: -0.01em;
-    color: var(--black);
+    color: var(--color-text-primary);
     margin-bottom: 8px;
-    font-weight: 700;
-    line-height: 1.2;
 }
 
 .team-date {
-    font-family: 'Inter', sans-serif;
     font-size: 0.65rem;
-    color: var(--black);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    color: var(--color-text-secondary);
     font-weight: 400;
-    opacity: 0.6;
+    margin-bottom: 20px;
 }
 
-/* divider */
-.divider {
-    height: 1px;
-    background: var(--divider);
-    margin: 18px 0;
-    opacity: 1;
-}
-
-/* players */
 .players-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    color: var(--gold-aged);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    margin-top: 6px;
-    word-spacing: 0.2em;
-}
-
-.players-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.player-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: transparent;
-    border-bottom: 1px solid var(--divider);
-    border-radius: 0;
-    padding: 10px 0;
-    transition: opacity 0.3s ease;
-}
-
-.player-item:hover {
-    opacity: 0.7;
-}
-
-.player-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 0px;
-    object-fit: cover;
-    border: 1px solid var(--gold-aged);
-    flex-shrink: 0;
-    filter: saturate(0.4) sepia(0.15);
-}
-
-.player-avatar-placeholder {
-    width: 40px;
-    height: 40px;
-    border-radius: 0px;
-    background: var(--cream);
-    border: 1px solid var(--divider);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 0.75rem;
-    color: var(--gold-aged);
-    font-weight: 600;
-    flex-shrink: 0;
-    font-family: 'Inter', sans-serif;
     letter-spacing: 0.1em;
-}
-
-.player-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.player-name {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--black);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.3;
-}
-
-.player-stats {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
-    color: var(--black);
-    margin-top: 2px;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-weight: 600;
-    opacity: 0.7;
-    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    background: var(--color-accent-bg);
+    color: var(--color-accent-text);
+    padding: 6px 12px;
+    display: inline-block;
+    border-radius: 4px;
 }
 
-/* empty state */
-.empty-players {
-    text-align: center;
-    padding: 16px 0;
-    color: var(--black);
-    font-size: 0.75rem;
-    font-style: italic;
-    opacity: 0.5;
-    border: none;
-    font-family: 'Inter', sans-serif;
-}
-
-/* no teams */
+/* Empty state */
 .no-teams {
+    grid-column: 1/-1;
     text-align: center;
     padding: 80px 20px;
-    color: var(--black);
-    font-size: 0.9rem;
-    font-family: 'Inter', sans-serif;
-    opacity: 0.6;
 }
 
 .no-teams span {
     font-size: 2.5rem;
     display: block;
     margin-bottom: 12px;
+    color: var(--color-text-secondary);
 }
 
-/* footer */
-footer {
-    text-align: center;
-    padding: 40px 24px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
-    color: var(--black);
-    letter-spacing: 0.15em;
-    border-top: 1px solid var(--divider);
-    opacity: 0.6;
-    font-weight: 400;
+.no-teams a {
+    color: var(--color-text-accent);
+}
+
+.no-teams a:hover {
+    color: var(--gold);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main {
+        padding: 40px 16px 80px;
+    }
+
+    .teams-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+    }
+
+    .team-name {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 30px 12px 60px;
+    }
+
+    .teams-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .team-name {
+        font-size: 1.3rem;
+    }
+
+    .card-body {
+        padding: 32px 16px 16px;
+    }
 }
